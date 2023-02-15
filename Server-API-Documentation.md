@@ -1,23 +1,23 @@
 # Movies endpoint
 ## Get Movies
 
-### Path
+Path
 
 `/api/movies`
 
-### Method
+Method
 
 `GET`
 
-### Summary
+Summary
 
 Get movies
 
-### Description
+Description
 
 Get movies
 
-### Operation ID
+Operation ID
 
 `getMovies`
 
@@ -29,9 +29,9 @@ Get movies
 | limit  | query | Number of returned movie (max 250) | false    | integer (0-250) |
 | offset | query | Offset to return movies            | false    | integer (0-250) |
 
-### Responses
+Responses
 
-#### 200
+200
 
 Description: Search results matching criteria
 
@@ -40,7 +40,7 @@ Content:
 - application/json:
     - schema: [SearchResults](#/components/schemas/SearchResults)
 
-#### 400
+400
 
 Description: Bad request
 
@@ -51,7 +51,7 @@ Content:
 
 ## Get Movie by ID
 
-### Path
+Path
 
 `/api/movies/{id}`
 
@@ -59,27 +59,27 @@ Content:
 
 `GET`
 
-### Summary
+Summary
 
 Get movie by id
 
-### Description
+Description
 
 Get movie by id
 
-### Operation ID
+Operation ID
 
 `getMoviesId`
 
-### Parameters
+Parameters
 
 | Name | In   | Description       | Required | Schema |
 |------|------|-------------------|----------|--------|
 | id   | path | Movie id to fetch | true     | string |
 
-### Responses
+Responses
 
-#### 200
+200
 
 Description: Movie details
 
@@ -88,7 +88,7 @@ Content:
 - application/json:
     - schema: [Movie](#/components/schemas/Movie)
 
-#### 400
+400
 
 Description: Bad request
 
