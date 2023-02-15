@@ -1,6 +1,8 @@
+## Indices
+
 The data is stored in ElasticSearch. The 2 indices used are **groups** and **users**.
 
-## Groups
+### Groups
 
 The `groups` index stores all the groups' information. Each group has the following properties:
 
@@ -9,7 +11,7 @@ The `groups` index stores all the groups' information. Each group has the follow
 * `description`: The group description.
 * `movies`:  An array with the movie IDs that are in the group.
 
-## Users
+### Users
 
 The `users` index stores all the users' information. Each user has the following properties:
 
