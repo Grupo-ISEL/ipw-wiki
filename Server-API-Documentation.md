@@ -1,26 +1,10 @@
 # Movies endpoint
-## Get Movies
 
-Path
-
-`/api/movies`
-
-Method
-
-`GET`
-
-Summary
-
-Get movies
-
-Description
-
-Get movies
-
-Operation ID
-
-`getMovies`
-
+| Path               | Method | Summary         | Description     | Responses                                                                                   |
+|--------------------|--------|-----------------|-----------------|---------------------------------------------------------------------------------------------|
+| `/api/movies`      | `GET`  | Get Movies      | Get movies      | 200 application/json: SearchResults, 400 application/json: InvalidRequest                   |
+| `/api/movies/{id}` | `GET`  | Get Movie by ID | Get movie by id | 200 application/json: Movie, 400 application/json: InvalidRequest, 404 application/json: {} |
+| `/api/movies/top`  | `GET`  | Get Top Movies  | Get top movies  | 200 application/json: array of TopMovie, 400 application/json: InvalidRequest               |
 ### Parameters
 
 | Name   | In    | Description                        | Required | Schema          |
@@ -29,45 +13,6 @@ Operation ID
 | limit  | query | Number of returned movie (max 250) | false    | integer (0-250) |
 | offset | query | Offset to return movies            | false    | integer (0-250) |
 
-Responses
-
-200
-
-Description: Search results matching criteria
-
-Content:
-
-- application/json:
-    - schema: [SearchResults](#/components/schemas/SearchResults)
-
-400
-
-Description: Bad request
-
-Content:
-
-- application/json:
-    - schema: [InvalidRequest](#/components/schemas/InvalidRequest)
-
-## Get Movie by ID
-
-Path
-
-`/api/movies/{id}`
-
-### Method
-
-`GET`
-
-Summary
-
-Get movie by id
-
-Description
-
-Get movie by id
-
-Operation ID
 
 `getMoviesId`
 
@@ -77,53 +22,6 @@ Parameters
 |------|------|-------------------|----------|--------|
 | id   | path | Movie id to fetch | true     | string |
 
-Responses
-
-200
-
-Description: Movie details
-
-Content:
-
-- application/json:
-    - schema: [Movie](#/components/schemas/Movie)
-
-400
-
-Description: Bad request
-
-Content:
-
-- application/json:
-    - schema: [InvalidRequest](#/components/schemas/InvalidRequest)
-
-#### 404
-
-Description: Movie not found
-
-Content:
-
-- application/json: {}
-
-## Get Top Movies
-
-### Path
-
-`/api/movies/top`
-
-### Method
-
-`GET`
-
-### Summary
-
-Get top movies
-
-### Description
-
-Get top movies
-
-### Operation ID
 
 `getTopMovies`
 
@@ -134,25 +32,6 @@ Get top movies
 | limit  | query | Number of returned movies (max 250) | false    | integer (0-250) |
 | offset | query | Offset to return movies             | false    | integer (min 0) |
 
-### Responses
-
-#### 200
-
-Description: Get top movies
-
-Content:
-
-- application/json:
-    - schema: array of [TopMovie](#/components/schemas/TopMovie)
-
-#### 400
-
-Description: Bad request
-
-Content:
-
-- application/json:
-    - schema: [InvalidRequest](#/components/schemas/InvalidRequest)
 
 # Users endpoint
 
@@ -181,103 +60,15 @@ New User
 | 201         | User created | application/json | `#/components/schemas/NewUserCreated` |
 | 400         | Bad request  | application/json | `#/components/schemas/InvalidRequest` |
 
-# Groups API endpoint
 
-## Endpoint: `/api/groups`
+| Path               | Method | Security   | Summary         | Description                           | Responses                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+|--------------------|--------|------------|-----------------|---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/api/groups`      | GET    | bearerAuth | List all groups | List all groups belonging to the user | - 200: All groups - Array of [Group](#/components/schemas/Group)                                         \n- 400: Bad request - [InvalidRequest](#/components/schemas/InvalidRequest)                          \n- 401: Not Authorized - [NotAuthorized](#/components/schemas/NotAuthorized)                                                                                                                                                                |
+| `/api/groups`      | POST   | bearerAuth | Create group    | Create group                          | - 200: Group created - [NewGroupCreated](#/components/schemas/NewGroupCreated)                         \n- 400: Bad request - [InvalidRequest](#/components/schemas/InvalidRequest)                          \n- 401: Not Authorized - [NotAuthorized](#/components/schemas/NotAuthorized)                                                                                                                                                                  |
+| `/api/groups/{id}` | GET    | bearerAuth | Get group by ID | Get group by ID                       | - 200: OK - [Group](#/components/schemas/Group)                                                         \n- 400: Bad request - [InvalidRequest](#/components/schemas/InvalidRequest)                          \n- 401: Not Authorized - [NotAuthorized](#/components/schemas/NotAuthorized)                          \n- 403: Forbidden - [Forbidden](#/components/schemas/Forbidden)                                         \n- 404: Group not found - {} |
+| `/api/groups/{id}` | PUT    | bearerAuth | Edit group      | Edit group                            | - 200: Group edited - [NewGroupCreated](#/components/schemas/NewGroupCreated)                          \n- 400: Bad request - [InvalidRequest](#/components/schemas/InvalidRequest)                          \n- 401: Not Authorized - [NotAuthorized](#/components/schemas/NotAuthorized)                          \n- 403: Forbidden - [Forbidden](#/components/schemas/Forbidden)                                         \n- 404: Group not found - {}  |
+| `/api/groups/{id}` | DELETE | bearerAuth | Delete group    | Delete group                          | - 200: Group deleted - [NewGroupCreated](#/components/schemas/NewGroupCreated)                         \n- 400: Bad request - [InvalidRequest](#/components/schemas/InvalidRequest)                          \n- 401: Not Authorized - [NotAuthorized](#/components/schemas/NotAuthorized)                          \n- 403: Forbidden - [Forbidden](#/components/schemas/Forbidden)                                         \n- 404: Group not found - {}  |
 
-### GET `/api/groups`
-
-List all groups belonging to the user
-
-#### Security
-
-- bearerAuth: [ ]
-
-#### Responses
-
-| Code | Description    | Schema                                                |
-|------|----------------|-------------------------------------------------------|
-| 200  | All groups     | Array of [Group](#/components/schemas/Group)          |
-| 400  | Bad request    | [InvalidRequest](#/components/schemas/InvalidRequest) |
-| 401  | Not Authorized | [NotAuthorized](#/components/schemas/NotAuthorized)   |
-
-### POST `/api/groups`
-
-Create group
-
-#### Security
-
-- bearerAuth: [ ]
-
-#### Request Body
-
-- Description: Group to create
-- Required: true
-- Content: `application/json`
-    - Schema: [NewGroup](#/components/schemas/NewGroup)
-
-#### Responses
-
-| Code | Description    | Schema                                                  |
-|------|----------------|---------------------------------------------------------|
-| 200  | Group created  | [NewGroupCreated](#/components/schemas/NewGroupCreated) |
-| 400  | Bad request    | [InvalidRequest](#/components/schemas/InvalidRequest)   |
-| 401  | Not Authorized | [NotAuthorized](#/components/schemas/NotAuthorized)     |
-
-## Endpoint: `/api/groups/{id}`
-
-### GET `/api/groups/{id}`
-
-Get group by ID
-
-#### Security
-
-- bearerAuth: [ ]
-
-#### Path Parameters
-
-- `id`: Group ID (integer, required)
-
-#### Responses
-
-| Code | Description     | Schema                                                |
-|------|-----------------|-------------------------------------------------------|
-| 200  | OK              | [Group](#/components/schemas/Group)                   |
-| 400  | Bad request     | [InvalidRequest](#/components/schemas/InvalidRequest) |
-| 401  | Not Authorized  | [NotAuthorized](#/components/schemas/NotAuthorized)   |
-| 403  | Forbidden       | [Forbidden](#/components/schemas/Forbidden)           |
-| 404  | Group not found | {}                                                    |
-
-### PUT `/api/groups/{id}`
-
-Edit group
-
-#### Security
-
-- bearerAuth: [ ]
-
-#### Path Parameters
-
-- `id`: Group ID (integer, required)
-
-#### Request Body
-
-- Description: Group details to edit
-- Required: true
-- Content: `application/json`
-    - Schema: [NewGroup](#/components/schemas/NewGroup)
-
-#### Responses
-
-| Code | Description     | Schema                                                  |
-|------|-----------------|---------------------------------------------------------|
-| 200  | Group edited    | [NewGroupCreated](#/components/schemas/NewGroupCreated) |
-| 400  | Bad request     | [InvalidRequest](#/components/schemas/InvalidRequest)   |
-| 401  | Not Authorized  | [NotAuthorized](#/components/schemas/NotAuthorized)     |
-| 403  | Forbidden       | [Forbidden](#/components/schemas/Forbidden)             |
-| 404  | Group not found | {}                                                      |
-
-### DELETE `/api/groups/{id}`
 
 ## Schemas
 
