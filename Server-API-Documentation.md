@@ -1,34 +1,20 @@
 # Movies endpoint
 
-| Path               | Method | Summary         | Description     | Responses                                                                                   |
-|--------------------|--------|-----------------|-----------------|---------------------------------------------------------------------------------------------|
-| `/api/movies`      | `GET`  | Get Movies      | Get movies      | 200 application/json: SearchResults, 400 application/json: InvalidRequest                   |
-| `/api/movies/{id}` | `GET`  | Get Movie by ID | Get movie by id | 200 application/json: Movie, 400 application/json: InvalidRequest, 404 application/json: {} |
-| `/api/movies/top`  | `GET`  | Get Top Movies  | Get top movies  | 200 application/json: array of TopMovie, 400 application/json: InvalidRequest               |
-### Parameters
-
-| Name   | In    | Description                        | Required | Schema          |
-|--------|-------|------------------------------------|----------|-----------------|
-| search | query | Movie title to search              | true     | string          |
-| limit  | query | Number of returned movie (max 250) | false    | integer (0-250) |
-| offset | query | Offset to return movies            | false    | integer (0-250) |
-
-
-`getMoviesId`
-
-Parameters
-
-| Name | In   | Description       | Required | Schema |
-|------|------|-------------------|----------|--------|
-| id   | path | Movie id to fetch | true     | string |
-
-
-`getTopMovies`
+| Path               | Method | Summary         | Description     | Parameters                                     | Responses                                                                                   |
+|--------------------|--------|-----------------|-----------------|------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `/api/movies`      | `GET`  | Get Movies      | Get movies      |                                                | 200 application/json: SearchResults, 400 application/json: InvalidRequest                   |
+| `/api/movies/{id}` | `GET`  | Get Movie by ID | Get movie by id | Path Parameter `id`: ID of the movie (integer) | 200 application/json: Movie, 400 application/json: InvalidRequest, 404 application/json: {} |
+| `/api/movies/top`  | `GET`  | Get Top Movies  | Get top movies  |                                                | 200 application/json: array of TopMovie, 400 application/json: InvalidRequest               |
 
 ### Parameters
+
 
 | Name   | In    | Description                         | Required | Schema          |
 |--------|-------|-------------------------------------|----------|-----------------|
+| search | query | Movie title to search               | true     | string          |
+| limit  | query | Number of returned movie (max 250)  | false    | integer (0-250) |
+| offset | query | Offset to return movies             | false    | integer (0-250) |
+| id     | path  | Movie id to fetch                   | true     | string          |
 | limit  | query | Number of returned movies (max 250) | false    | integer (0-250) |
 | offset | query | Offset to return movies             | false    | integer (min 0) |
 
