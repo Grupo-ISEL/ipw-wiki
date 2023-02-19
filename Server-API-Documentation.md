@@ -37,7 +37,7 @@ Similarly, all responses are `application/json`.
 |------|------|--------------|----------|---------------------|
 | user | body | User details | true     | [NewUser](#NewUser) |
 
-#### Responses
+### Responses
 
 | Status Code | Description  | Content-Type     | Schema                            |
 |-------------|--------------|------------------|-----------------------------------|
