@@ -23,8 +23,6 @@ Similarly, all responses are `application/json`.
 
 # Users endpoint
 
-# Movies endpoint
-
 | Path         | Method | Summary         | Description     | Parameters                   | Responses                                                                           |
 |--------------|--------|-----------------|-----------------|------------------------------|-------------------------------------------------------------------------------------|
 | `/api/users` | `POST` | Create new user | Create new user | In Body: [NewUser](#NewUser) | * 201 [NewUserCreated](#NewUserCreated)<br/>* 400 [InvalidRequest](#InvalidRequest) |
