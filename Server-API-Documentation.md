@@ -20,8 +20,6 @@ Similarly, all responses are `application/json`.
 | limit  | query | Number of returned movie (max 250)  | false    | integer (0-250) |
 | offset | query | Offset to return movies             | false    | integer (0-250) |
 | id     | path  | Movie id to fetch                   | true     | string          |
-| limit  | query | Number of returned movies (max 250) | false    | integer (0-250) |
-| offset | query | Offset to return movies             | false    | integer (min 0) |
 
 # Users endpoint
 
