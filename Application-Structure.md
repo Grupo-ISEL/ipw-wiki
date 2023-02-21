@@ -18,7 +18,7 @@ The services layer implements all the business logic for managing users, groups,
 
 ## Data Layer
 
-The data layer is responsible for accessing the application's data storage. The application uses Elasticsearch as the data store for users and groups. The data access layer uses a custom module that interacts with the ElasticSearch REST API.
+The data layer is responsible for accessing the application's data storage. The application uses Elasticsearch as the data store for users and groups. The data access layer uses a custom module that interacts with the `Index` and `Document` [ElasticSearch REST API](https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html).
 
 In addition to ElasticSearch, the application provides an alternative implementation of the data persistence layer, in memory, used only for testing purposes. The in-memory data store is used for automated testing and provides a simple, lightweight alternative to ElasticSearch.
 
