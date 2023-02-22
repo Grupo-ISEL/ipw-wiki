@@ -11,7 +11,15 @@ To run the application and tests, you will need to have the following installed 
 ```bash
 npm install
 ```
-2. Run the application 
+2. Optionally set the `ELASTIC_URL` environment variable. If this is not set the default value `http://localhost:9200` will be used.
+```bash
+export ELASTIC_URL='http://localhost:9200'
+```
+3. Optionally set the `IMDB_API_KEY` environment variable. If this is not set, a default API key will be used (it's not guaranteed the default key works, so a new key is recommended.
+```bash
+export IMDB_API_KEY='http://localhost:9200'
+```
+4. Run the application 
 ```bash
 npm start
 ```
